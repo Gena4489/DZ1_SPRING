@@ -48,5 +48,7 @@ public class PremiereService {
         return listPremiere.getList().size();
     }
 
-
+    public String getPremeiresInfo(String premiereName) {
+        return listPremiere.getPremeiresInfo(premiereName);
+    }
 }

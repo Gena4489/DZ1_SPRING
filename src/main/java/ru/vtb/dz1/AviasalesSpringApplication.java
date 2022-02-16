@@ -56,6 +56,14 @@ public class AviasalesSpringApplication {
             System.out.println(premiereService.getListPremiere().get(i).toString());
         }
 
+        //Вывод информации о премьере
+        System.out.println("---------Вывод информации о премьере \"Дом у дороги\"-------------");
+        System.out.println(premiereService.getPremeiresInfo("Дом у дороги"));
+
+        //Вывод информации обо всех премьерах
+        System.out.println("---------Вывод информации обо всех премьерах-------------");
+        System.out.println(premiereService.getPremeiresInfo(null));
+
     }
 
 }

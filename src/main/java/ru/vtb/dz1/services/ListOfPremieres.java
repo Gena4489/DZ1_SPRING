@@ -70,4 +70,18 @@ public class ListOfPremieres {
         }
     }
 
+    public String getPremeiresInfo(String premiereName) {
+        StringBuilder sb = new StringBuilder();
+        for (Premiere p : list) {
+            if (p.getName().equalsIgnoreCase(premiereName)) {
+                return p.toString();
+            } else {
+                sb.append(p.toString()).append("\n");
+            }
+
+        }
+        return sb.toString();
+    }
+
+
 }
