@@ -20,7 +20,7 @@ public class AviasalesSpringApplication {
         premiereService.addPremiere(new Premiere("Пингвиненок Лоло", "Мультфильм о приключениях пингвиненка Лоло", 3, 50));
 
         for (int i = 0; i < premiereService.getListPremiereSize(); i++) {
-            System.out.println(premiereService.getListPremiere().get(i).toString());
+            System.out.println(premiereService.getPremieres().get(i).toString());
         }
 
         //Изменили кол-во доступных мест в премьере
@@ -31,7 +31,7 @@ public class AviasalesSpringApplication {
         premiereService.addPremiere(new Premiere("Дом у дороги", "Драматическая повесть", 14, 30));
 
         for (int i = 0; i < premiereService.getListPremiereSize(); i++) {
-            System.out.println(premiereService.getListPremiere().get(i).toString());
+            System.out.println(premiereService.getPremieres().get(i).toString());
         }
 
         //Удалена премьера
@@ -45,7 +45,7 @@ public class AviasalesSpringApplication {
         }
 
         for (int i = 0; i < premiereService.getListPremiereSize(); i++) {
-            System.out.println(premiereService.getListPremiere().get(i).toString());
+            System.out.println(premiereService.getPremieres().get(i).toString());
         }
 
         //Вернули 2 билета на премьеру
@@ -53,7 +53,7 @@ public class AviasalesSpringApplication {
         premiereService.returnTickets("Дом у дороги", 2);
 
         for (int i = 0; i < premiereService.getListPremiereSize(); i++) {
-            System.out.println(premiereService.getListPremiere().get(i).toString());
+            System.out.println(premiereService.getPremieres().get(i).toString());
         }
 
         //Вывод информации о премьере

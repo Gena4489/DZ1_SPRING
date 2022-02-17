@@ -9,46 +9,84 @@ import java.util.List;
 @Service
 public class PremiereService {
 
-    private final ListOfPremieres listPremiere;
+    private final Premieres premieres;
 
     @Autowired
-    public PremiereService(ListOfPremieres listPremiere) {
-        this.listPremiere = listPremiere;
+    public PremiereService(Premieres premieres) {
+        this.premieres = premieres;
     }
 
     public void addPremiere(Premiere premiere) {
-        listPremiere.addPremiere(premiere);
+        premieres.getList().add(premiere);
     }
 
     public void deletePremiere(String premiereName) {
-        listPremiere.deletePremiere(premiereName);
+        for (Premiere p : premieres.getList()) {
+            if (p.getName().equalsIgnoreCase(premiereName)) {
+                premieres.getList().remove(p);
+                return;
+            }
+        }
     }
 
 
     public void changePremiere(String premiereName, String newDescription,
                                Integer newAgeCategory, Integer newNumberOfSeats) {
-        listPremiere.changePremiere(premiereName, newDescription, newAgeCategory, newNumberOfSeats);
+        for (Premiere p : premieres.getList()) {
+            if (p.getName().equalsIgnoreCase(premiereName)) {
+                if (newDescription != null) {
+                    p.setDescription(newDescription);
+                }
+                if (newAgeCategory > 0) {
+                    p.setAgeCategory(newAgeCategory);
+                }
+                if (newAgeCategory >= 1) {
+                    p.setAgeCategory(newAgeCategory);
+                }
+                if (newNumberOfSeats >= 1) {
+                    p.setNumberOfSeats(newNumberOfSeats);
+                }
+            }
+        }
     }
 
 
     public boolean buyTickets(String premiereName, Integer numTikets) {
-        return listPremiere.buyTickets(premiereName, numTikets);
+        for (Premiere p : premieres.getList()) {
+            if (p.getName().equalsIgnoreCase(premiereName) && p.getNumberOfSeats() - numTikets >= 0) {
+                p.setNumberOfSeats(p.getNumberOfSeats() - numTikets);
+                return true;
+            }
+        }
+        return false;
     }
 
     public void returnTickets(String premiereName, Integer numTikets) {
-        listPremiere.returnTickets(premiereName, numTikets);
+        for (Premiere p : premieres.getList()) {
+            if (p.getName().equalsIgnoreCase(premiereName)) {
+                p.setNumberOfSeats(p.getNumberOfSeats() + numTikets);
+            }
+        }
     }
 
-
-    public List<Premiere> getListPremiere() {
-        return listPremiere.getList();
+    public List<Premiere> getPremieres() {
+        return premieres.getList();
     }
 
     public int getListPremiereSize() {
-        return listPremiere.getList().size();
+        return premieres.getList().size();
     }
 
     public String getPremeiresInfo(String premiereName) {
-        return listPremiere.getPremeiresInfo(premiereName);
+        StringBuilder sb = new StringBuilder();
+        for (Premiere p : premieres.getList()) {
+            if (p.getName().equalsIgnoreCase(premiereName)) {
+                return p.toString();
+            } else {
+                sb.append(p.toString()).append("\n");
+            }
+
+        }
+        return sb.toString();
     }
 }
